@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		9C86CE6096D9E881E7BC33E4 /* Pods_ParseChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46EF415590F78B22D2DE1DFF /* Pods_ParseChat.framework */; };
 		C737016B1FD3345B00DE6040 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C737016A1FD3345B00DE6040 /* AppDelegate.swift */; };
-		C737016D1FD3345B00DE6040 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C737016C1FD3345B00DE6040 /* ViewController.swift */; };
 		C73701701FD3345B00DE6040 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C737016E1FD3345B00DE6040 /* Main.storyboard */; };
 		C73701721FD3345B00DE6040 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C73701711FD3345B00DE6040 /* Assets.xcassets */; };
 		C73701751FD3345B00DE6040 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C73701731FD3345B00DE6040 /* LaunchScreen.storyboard */; };
+		C737017D1FD3365900DE6040 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C737017C1FD3365900DE6040 /* LoginViewController.swift */; };
+		C737017F1FD33B8D00DE6040 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C737017E1FD33B8D00DE6040 /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		46EF415590F78B22D2DE1DFF /* Pods_ParseChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParseChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C73701671FD3345B00DE6040 /* ParseChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParseChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C737016A1FD3345B00DE6040 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C737016C1FD3345B00DE6040 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C737016F1FD3345B00DE6040 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C73701711FD3345B00DE6040 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C73701741FD3345B00DE6040 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C73701761FD3345B00DE6040 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C737017C1FD3365900DE6040 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		C737017E1FD33B8D00DE6040 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		CC13C7115CDDAC38F37961D6 /* Pods-ParseChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParseChat.release.xcconfig"; path = "Pods/Target Support Files/Pods-ParseChat/Pods-ParseChat.release.xcconfig"; sourceTree = "<group>"; };
 		DF004E1507A4BE3B2CCA5BC4 /* Pods-ParseChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParseChat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ParseChat/Pods-ParseChat.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,11 +72,12 @@
 			isa = PBXGroup;
 			children = (
 				C737016A1FD3345B00DE6040 /* AppDelegate.swift */,
-				C737016C1FD3345B00DE6040 /* ViewController.swift */,
 				C737016E1FD3345B00DE6040 /* Main.storyboard */,
 				C73701711FD3345B00DE6040 /* Assets.xcassets */,
 				C73701731FD3345B00DE6040 /* LaunchScreen.storyboard */,
 				C73701761FD3345B00DE6040 /* Info.plist */,
+				C737017C1FD3365900DE6040 /* LoginViewController.swift */,
+				C737017E1FD33B8D00DE6040 /* RegisterViewController.swift */,
 			);
 			path = ParseChat;
 			sourceTree = "<group>";
@@ -219,7 +222,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C737016D1FD3345B00DE6040 /* ViewController.swift in Sources */,
+				C737017F1FD33B8D00DE6040 /* RegisterViewController.swift in Sources */,
+				C737017D1FD3365900DE6040 /* LoginViewController.swift in Sources */,
 				C737016B1FD3345B00DE6040 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
