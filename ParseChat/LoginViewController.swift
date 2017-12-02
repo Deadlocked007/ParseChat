@@ -25,18 +25,27 @@ class LoginViewController: UIViewController {
         containerView.layer.borderColor = UIColor.lightGray.cgColor
         
         emailField.becomeFirstResponder()
+        
     }
     
     @IBAction func onOutsideTap(_ sender: Any) {
         view.endEditing(true)
     }
     
+    func createAlert(error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func onSignIn(_ sender: Any) {
         guard let email = emailField.text, !email.isEmpty else {
+            createAlert(error: "Email is empty.")
             return
         }
         
         guard let password = passwordField.text, !password.isEmpty else {
+            createAlert(error: "Passsword is empty.")
             return
         }
         
@@ -44,6 +53,30 @@ class LoginViewController: UIViewController {
             if let error = error {
                 print(error.localizedDescription)
             } else if user != nil {
+                self.performSegue(withIdentifier: "loginSegue", sender: nil)
+            }
+        }
+    }
+    
+    @IBAction func onCreateAccount(_ sender: Any) {
+        guard let email = emailField.text, !email.isEmpty else {
+            createAlert(error: "Email is empty.")
+            return
+        }
+        
+        guard let password = passwordField.text, !password.isEmpty else {
+            createAlert(error: "Password is empty.")
+            return
+        }
+        
+        let newUser = PFUser()
+        newUser.email = email
+        newUser.password = password
+        
+        newUser.signUpInBackground { (successful, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else if successful {
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
             }
         }
