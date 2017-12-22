@@ -24,13 +24,15 @@ The following **optional** user stories are implemented:
 - [x] Chat Bubble Style Design (+3pt)
 - [x] Expand or contract the cell layout as needed to show the chat message author (user) if it exists (+2pt)
 
+The following **additional** features are implemented:
+
+- [x] Implemented Logout function
+
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+![](ParseChat.gif)
 
 ## Notes
 
