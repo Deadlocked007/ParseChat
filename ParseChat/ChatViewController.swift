@@ -81,6 +81,13 @@ class ChatViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func onLogout(_ sender: Any) {
+        PFUser.logOut()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let chatViewController = storyboard.instantiateInitialViewController()
+        present(chatViewController!, animated: true, completion: nil)
+    }
 }
 
 extension ChatViewController: UITableViewDelegate, UITableViewDataSource {

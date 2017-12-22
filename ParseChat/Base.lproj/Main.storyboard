@@ -250,7 +250,20 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eBf-r4-K7v"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Chat" id="6lA-7M-1hP"/>
+                    <navigationItem key="navigationItem" title="Chat" id="6lA-7M-1hP">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="Rtm-pB-1yJ">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ksq-Pv-D4e">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleColor" red="0.96620899439999997" green="0.0" blue="0.1689493242" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="onLogout:" destination="3Yx-nN-L3Z" eventType="touchUpInside" id="uXq-bb-SzH"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="chatField" destination="U42-8d-saF" id="dXd-oh-XV4"/>
                         <outlet property="tableView" destination="5xJ-r3-XZy" id="xGq-op-fLe"/>
