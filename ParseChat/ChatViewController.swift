@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import AlamofireImage
 
 class ChatViewController: UIViewController {
 
@@ -15,9 +16,14 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var messages: [PFObject] = []
+    let refreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let background = UIImage(named: "background")!
+        self.navigationController!.navigationBar.setBackgroundImage(background, for: .default)
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -27,10 +33,13 @@ class ChatViewController: UIViewController {
         
         tableView.tableFooterView = UIView()
         
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(getMessages), for: .valueChanged)
+        
         getMessages()
     }
     
-    func getMessages() {
+    @objc func getMessages() {
         
         DispatchQueue.global().asyncAfter(deadline: DispatchTime(uptimeNanoseconds: UInt64(1e9))) {
             let query = PFQuery(className: "Message")
@@ -41,13 +50,15 @@ class ChatViewController: UIViewController {
                 if let error = error {
                     print(error.localizedDescription)
                     self.getMessages()
+                    self.refreshControl.endRefreshing()
                 } else if let messages = messages {
                     self.messages = messages
                     DispatchQueue.main.async {
                         
                         self.tableView.reloadData()
+                        self.getMessages()
+                        self.refreshControl.endRefreshing()
                     }
-                    self.getMessages()
                 }
             })
         }
@@ -82,17 +93,24 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         
         let message = messages[indexPath.row]
         
+        cell.avatarView.image = nil
+        
         if let user = message["user"] as? PFUser {
             // User found! update username label with username
             cell.usernameLabel.text = user.username
+            cell.avatarView.af_setImage(withURL: URL(string: "http://api.adorable.io/avatar/20/\(user.username!)")!)
+            cell.avatarView.isHidden = false
         } else {
             // No user found, set default username
             cell.usernameLabel.text = "🤖"
+            cell.avatarView.isHidden = true
         }
         
         
         cell.chatLabel.text = message["text"] as? String ?? ""
         cell.chatLabel.sizeToFit()
+        
+        cell.chatView.layer.cornerRadius = 16
         
         return cell
     }

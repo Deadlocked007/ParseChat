@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import SVProgressHUD
 
 class LoginViewController: UIViewController {
 
@@ -39,33 +40,51 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onSignIn(_ sender: Any) {
+        view.isUserInteractionEnabled = false
+        SVProgressHUD.show()
+        
         guard let email = emailField.text, !email.isEmpty else {
             createAlert(error: "Email is empty.")
+            view.isUserInteractionEnabled = true
+            SVProgressHUD.dismiss()
             return
         }
         
         guard let password = passwordField.text, !password.isEmpty else {
             createAlert(error: "Passsword is empty.")
+            view.isUserInteractionEnabled = true
+            SVProgressHUD.dismiss()
             return
         }
         
         PFUser.logInWithUsername(inBackground: email, password: password) { (user, error) in
             if let error = error {
                 print(error.localizedDescription)
+                self.view.isUserInteractionEnabled = true
+                SVProgressHUD.dismiss()
             } else if user != nil {
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                self.view.isUserInteractionEnabled = true
+                SVProgressHUD.dismiss()
             }
         }
     }
     
     @IBAction func onCreateAccount(_ sender: Any) {
+        view.isUserInteractionEnabled = false
+        SVProgressHUD.show()
+        
         guard let email = emailField.text, !email.isEmpty else {
             createAlert(error: "Email is empty.")
+            self.view.isUserInteractionEnabled = true
+            SVProgressHUD.dismiss()
             return
         }
         
         guard let password = passwordField.text, !password.isEmpty else {
             createAlert(error: "Password is empty.")
+            view.isUserInteractionEnabled = true
+            SVProgressHUD.dismiss()
             return
         }
         
@@ -76,8 +95,12 @@ class LoginViewController: UIViewController {
         newUser.signUpInBackground { (successful, error) in
             if let error = error {
                 print(error.localizedDescription)
+                self.view.isUserInteractionEnabled = true
+                SVProgressHUD.dismiss()
             } else if successful {
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                self.view.isUserInteractionEnabled = true
+                SVProgressHUD.dismiss()
             }
         }
     }

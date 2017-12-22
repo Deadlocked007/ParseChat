@@ -7,4 +7,6 @@ target 'ParseChat' do
   
   # Pods for ParseChat
   pod 'Parse'
+  pod 'SVProgressHUD'
+  pod 'AlamofireImage'
 end
