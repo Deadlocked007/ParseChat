@@ -21,6 +21,12 @@ class ChatViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 66
+        
+        tableView.tableFooterView = UIView()
+        
         getMessages()
     }
     
@@ -29,6 +35,7 @@ class ChatViewController: UIViewController {
         DispatchQueue.global().asyncAfter(deadline: DispatchTime(uptimeNanoseconds: UInt64(1e9))) {
             let query = PFQuery(className: "Message")
             query.addAscendingOrder("createdAt")
+            query.includeKey("user")
             
             query.findObjectsInBackground(block: { (messages, error) in
                 if let error = error {
@@ -53,6 +60,7 @@ class ChatViewController: UIViewController {
         
         let chatMessage = PFObject(className: "Message")
         chatMessage["text"] = text
+        chatMessage["user"] = PFUser.current()!
         
         chatMessage.saveInBackground { (true, error) in
             if let error = error {
@@ -74,7 +82,18 @@ extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
         
         let message = messages[indexPath.row]
         
-        cell.chatLabel.text = message["text"] as! String
+        if let user = message["user"] as? PFUser {
+            // User found! update username label with username
+            cell.usernameLabel.text = user.username
+        } else {
+            // No user found, set default username
+            cell.usernameLabel.text = "🤖"
+        }
+        
+        
+        cell.chatLabel.text = message["text"] as? String ?? ""
+        cell.chatLabel.sizeToFit()
+        
         return cell
     }
 

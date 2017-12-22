@@ -23,6 +23,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             configuration.server = "https://parsechat007.herokuapp.com/parse"
         }))
         
+        if PFUser.current() != nil {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let chatViewController = storyboard.instantiateViewController(withIdentifier: "ChatNavigationController")
+            window?.rootViewController = chatViewController
+        }
+        
         return true
     }
 
