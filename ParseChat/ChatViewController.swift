@@ -14,10 +14,36 @@ class ChatViewController: UIViewController {
     @IBOutlet weak var chatField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
+    var messages: [PFObject] = []
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        getMessages()
+    }
+    
+    func getMessages() {
+        
+        DispatchQueue.global().asyncAfter(deadline: DispatchTime(uptimeNanoseconds: UInt64(1e9))) {
+            let query = PFQuery(className: "Message")
+            query.addAscendingOrder("createdAt")
+            
+            query.findObjectsInBackground(block: { (messages, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    self.getMessages()
+                } else if let messages = messages {
+                    self.messages = messages
+                    DispatchQueue.main.async {
+                        
+                        self.tableView.reloadData()
+                    }
+                    self.getMessages()
+                }
+            })
+        }
     }
 
     @IBAction func onSend(_ sender: Any) {
@@ -31,6 +57,8 @@ class ChatViewController: UIViewController {
         chatMessage.saveInBackground { (true, error) in
             if let error = error {
                 print(error.localizedDescription)
+            } else {
+                self.chatField.text = ""
             }
         }
     }
@@ -38,12 +66,15 @@ class ChatViewController: UIViewController {
 
 extension ChatViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return messages.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "chatCell", for: indexPath) as! ChatCell
         
+        let message = messages[indexPath.row]
+        
+        cell.chatLabel.text = message["text"] as! String
         return cell
     }
 
