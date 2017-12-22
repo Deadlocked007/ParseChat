@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9C86CE6096D9E881E7BC33E4 /* Pods_ParseChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46EF415590F78B22D2DE1DFF /* Pods_ParseChat.framework */; };
+		C7246A461FECA5E50037D345 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7246A451FECA5E50037D345 /* ChatViewController.swift */; };
 		C737016B1FD3345B00DE6040 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C737016A1FD3345B00DE6040 /* AppDelegate.swift */; };
 		C73701701FD3345B00DE6040 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C737016E1FD3345B00DE6040 /* Main.storyboard */; };
 		C73701721FD3345B00DE6040 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C73701711FD3345B00DE6040 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		46EF415590F78B22D2DE1DFF /* Pods_ParseChat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ParseChat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C7246A451FECA5E50037D345 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		C73701671FD3345B00DE6040 /* ParseChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParseChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C737016A1FD3345B00DE6040 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C737016F1FD3345B00DE6040 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				C73701761FD3345B00DE6040 /* Info.plist */,
 				C737017C1FD3365900DE6040 /* LoginViewController.swift */,
 				C737017E1FD33B8D00DE6040 /* RegisterViewController.swift */,
+				C7246A451FECA5E50037D345 /* ChatViewController.swift */,
 			);
 			path = ParseChat;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 			files = (
 				C737017F1FD33B8D00DE6040 /* RegisterViewController.swift in Sources */,
 				C737017D1FD3365900DE6040 /* LoginViewController.swift in Sources */,
+				C7246A461FECA5E50037D345 /* ChatViewController.swift in Sources */,
 				C737016B1FD3345B00DE6040 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

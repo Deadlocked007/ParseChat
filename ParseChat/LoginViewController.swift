@@ -70,7 +70,7 @@ class LoginViewController: UIViewController {
         }
         
         let newUser = PFUser()
-        newUser.email = email
+        newUser.username = email
         newUser.password = password
         
         newUser.signUpInBackground { (successful, error) in
